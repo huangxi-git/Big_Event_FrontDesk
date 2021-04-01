@@ -35,16 +35,22 @@ router.get('/index/latest_comment', (req, res) => {
 router.post('/index/post_comment', (req, res) => {
     // 1、接收的参数
     console.log('接收的参数:', req.body);
-    const { author, content, articleId } = req.body;
+    const { id, author, content, articleId, date, time, state } = req.body;
     // 2、拼接sql
-    const sqlStr = `insert into comments (author, content, articleId) values("${author}", "${content}") where articleId=${articleId}`;
+    const sqlStr = `insert into comments (id,author, content,articleId,date,time,state) values("${id}","${author}","${content}","${articleId}","${date}","${time}","${state}")`;
     // console.log(sqlStr);
     // 3、操作sql
     conn.query(sqlStr, (err, result) => {
         // 4、返回值
-        if (err) return res.json({ code: 400, message: '发表评论失败！' });
-        // console.log('返回值：', result);
-        res.json({ code: 200, message: '发表评论失成功！' });
+        if (err) {
+            console.log(err);
+            res.json({ code: 400, message: '发表评论失败！' });
+        }
+        else {
+
+            // console.log('返回值：', result);
+            res.json({ code: 200, message: '发表评论失成功！' });
+        }
     });
 });
 
