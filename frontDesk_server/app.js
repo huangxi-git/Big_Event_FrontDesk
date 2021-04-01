@@ -14,9 +14,11 @@ const server = express();
 const FD_Articles = require('./router/front_desk_articles');
 const FD_Categories = require('./router/front_desk_categories');
 const FD_Comments = require('./router/front_desk_comments');
+const FD_Hotpic = require('./router/front_desk_hotpic');
 server.use('/FD_Articles', FD_Articles);
 server.use('/FD_Categories', FD_Categories);
 server.use('/FD_Comments', FD_Comments);
+server.use('/FD_Hotpic', FD_Hotpic);
 
 
 // 启用服务
